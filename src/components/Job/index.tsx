@@ -6,11 +6,11 @@ const SalaryCalculator = (props: any) => {
   } = props;
   return (
     <ListItem divider>
-      <ListItemText primary={title} secondary={company} />
+      <ListItemText
+        primary={title}
+        secondary={`${company} | ${startDate} - ${endDate}`}
+      />
 
-      <Typography>
-        {startDate} - {endDate}
-      </Typography>
       {description && <Typography>{description}</Typography>}
     </ListItem>
   );

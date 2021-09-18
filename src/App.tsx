@@ -8,7 +8,6 @@ import Resume from "./components/Resume";
 import resumeData from "./components/Resume/data";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import { Email, GitHub } from "@mui/icons-material";
 import IconLinkButton from "./components/IconLinkButton";
 import WorkHighlight from "./components/WorkHighlight";
@@ -21,6 +20,11 @@ interface HeaderProps {
   title: string;
 }
 
+const sections: any[] = [
+  { title: "Home", url: "/" },
+  { title: "Income calculator", url: "/income-calculator" },
+];
+
 export default function App() {
   const { jobs } = resumeData;
   return (
@@ -28,15 +32,18 @@ export default function App() {
       <Container maxWidth="xl">
         <>
           <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Typography
-              component="h2"
-              variant="h5"
-              color="inherit"
-              noWrap
-              sx={{ flex: 1 }}
-            >
-              Steve Ernstberger
-            </Typography>
+            <div>
+              <Typography
+                component="h2"
+                variant="h5"
+                color="inherit"
+                noWrap
+                sx={{ flex: 1 }}
+              >
+                Steve Ernstberger
+              </Typography>
+              <Typography>Front-End Developer</Typography>
+            </div>
 
             <IconLinkButton
               icon={<GitHub />}
@@ -69,26 +76,21 @@ export default function App() {
           >
             <nav>
               <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/income-calculator">Income Calculator</Link>
-                </li>
+                {sections.map((section) => (
+                  <MuiLink
+                    component={Link}
+                    color="inherit"
+                    noWrap
+                    key={section.title}
+                    variant="body2"
+                    to={section.url}
+                    sx={{ p: 1, flexShrink: 0 }}
+                  >
+                    {section.title}
+                  </MuiLink>
+                ))}
               </ul>
             </nav>
-            {/* {sections.map((section) => (
-                <Link
-                  color="inherit"
-                  noWrap
-                  key={section.title}
-                  variant="body2"
-                  href={section.url}
-                  sx={{ p: 1, flexShrink: 0 }}
-                >
-                  {section.title}
-                </Link>
-              ))} */}
           </Toolbar>
         </>
 
@@ -100,7 +102,6 @@ export default function App() {
             <Route path="/">
               <div>
                 <div>
-                  Lead Front-End Developer
                   <Typography variant="h3">Expertise</Typography>
                   <Typography>
                     I am a Front-End Developer with 14 years of professional
