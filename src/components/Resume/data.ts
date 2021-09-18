@@ -5,6 +5,17 @@ const jobs = [
     startDate: "2019",
     description:
       "<p>As Lead Front-End Developer at Vemo Education, I lead our team of developers as we create software for students and administrators for income share agreements.</p><p>    I help create and architect technical requirements and their solutions, help and mentor other developers, and review code. I also have worked on implementing a design system across projects and also built algorithms that calculate loans and income share agreements.</p>",
+    technologies: [
+      "React",
+      "Javascript",
+      "Material UI",
+      "HTML5 / CSS3",
+      "Storybook",
+      "Git (BitBucket)",
+      "Agile",
+      "Jira",
+      "Recharts",
+    ],
   },
 
   {
@@ -14,6 +25,18 @@ const jobs = [
     title: "Developer",
     description:
       "At DeveloperTown, I worked as a front-end developer. My projects usually consisted of a React front-end connected to an API for data. Past projects used WordPress or Ruby on Rails. I worked with clients to gather requirements, estimate work, and guide them through the software building process. I worked closely with our project managers, designers, and back-end developers to build awesome software.",
+    technologies: [
+      "React",
+      "Javascript",
+      "Material UI",
+      "HTML5 / CSS3",
+      "Storybook",
+      "Git (BitBucket)",
+      "Git (GitHub)",
+      "Agile",
+      "Jira",
+      "Recharts",
+    ],
   },
 
   {

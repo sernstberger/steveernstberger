@@ -6,11 +6,9 @@ import { List } from "@mui/material";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import Resume from "./components/Resume";
 import resumeData from "./components/Resume/data";
-import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { Email, GitHub } from "@mui/icons-material";
-import IconLinkButton from "./components/IconLinkButton";
 import WorkHighlight from "./components/WorkHighlight";
+import Header from "./components/Header";
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -20,80 +18,12 @@ interface HeaderProps {
   title: string;
 }
 
-const sections: any[] = [
-  { title: "Home", url: "/" },
-  { title: "Income calculator", url: "/income-calculator" },
-];
-
 export default function App() {
   const { jobs } = resumeData;
   return (
     <Router>
-      <Container maxWidth="xl">
-        <>
-          <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <div>
-              <Typography
-                component="h2"
-                variant="h5"
-                color="inherit"
-                noWrap
-                sx={{ flex: 1 }}
-              >
-                Steve Ernstberger
-              </Typography>
-              <Typography>Front-End Developer</Typography>
-            </div>
-
-            <IconLinkButton
-              icon={<GitHub />}
-              href="https://github.com/sernstberger"
-            />
-            <IconLinkButton
-              icon={<Email />}
-              href="mailto:steve.ernstberger.dev@gmail.com"
-            />
-
-            <Button
-              variant="outlined"
-              size="small"
-              component={PDFDownloadLink}
-              document={<Resume />}
-              fileName="Steve Ernstberger Resume.pdf"
-            >
-              <span>
-                Download
-                {({ blob, url, loading, error }: any) =>
-                  loading ? "Loading document..." : "Download resume"
-                }
-              </span>
-            </Button>
-          </Toolbar>
-          <Toolbar
-            component="nav"
-            variant="dense"
-            sx={{ justifyContent: "space-between", overflowX: "auto" }}
-          >
-            <nav>
-              <ul>
-                {sections.map((section) => (
-                  <MuiLink
-                    component={Link}
-                    color="inherit"
-                    noWrap
-                    key={section.title}
-                    variant="body2"
-                    to={section.url}
-                    sx={{ p: 1, flexShrink: 0 }}
-                  >
-                    {section.title}
-                  </MuiLink>
-                ))}
-              </ul>
-            </nav>
-          </Toolbar>
-        </>
-
+      <Header />
+      <Container maxWidth="lg">
         <div>
           <Switch>
             <Route path="/income-calculator">
