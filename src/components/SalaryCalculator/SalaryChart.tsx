@@ -1,6 +1,13 @@
 import { ResponsiveBar } from "@nivo/bar";
-const SalaryChart = ({ data }: any) => {
-  const formattedData = data.map((singleData: any) => {
+import { DataStructure } from "../../types";
+
+interface SalaryChartProps {
+  data: DataStructure[];
+}
+
+const SalaryChart = (props: SalaryChartProps) => {
+  const { data } = props;
+  const formattedData = data.map((singleData: DataStructure) => {
     const { date, net, taxes, gross } = singleData;
     return {
       date,

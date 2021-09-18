@@ -6,11 +6,13 @@ import {
   TableCell,
   TableHead,
   Typography,
+  TextField,
 } from "@mui/material";
 import SalaryChart from "./SalaryChart";
 import { addYears, format } from "date-fns";
+import { DataStructure, FormattedNumber } from "../../types";
 
-const formatNumber = (amount: number) => {
+const formatNumber = (amount: number): FormattedNumber => {
   const formatted = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -24,7 +26,7 @@ const formatNumber = (amount: number) => {
 const SalaryCalculator = () => {
   const [startingSalary, setStartingSalary] = useState(20000);
 
-  const res = Array.from(Array(30)).map((_, i) => {
+  const res: DataStructure[] = Array.from(Array(30)).map((_, i) => {
     const growthRate = 0.05 * i;
     const multiple = 1 + growthRate;
     const gross = startingSalary * multiple;
@@ -44,17 +46,19 @@ const SalaryCalculator = () => {
 
   return (
     <div>
-      annual income
-      <input
+      <TextField
+        id="annual-income"
+        label="Annual income"
         type="number"
+        variant="outlined"
         value={startingSalary}
-        onChange={(e: any) => setStartingSalary(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setStartingSalary(parseInt(e.target.value, 10))
+        }
       />
 
       <Typography>5% growth each year for 30 years</Typography>
-
       <SalaryChart data={res} />
-
       <Typography>Breakdown by year</Typography>
       {res.length !== 0 ? (
         <Table>
