@@ -1,10 +1,11 @@
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { Box, Button, Typography, Container } from "@mui/material";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SalaryCalculator from "./components/SalaryCalculator";
 import Job from "./components/Job";
 import { List } from "@mui/material";
+import ReactPDF, { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+
+import Resume from "./components/Resume";
 
 const jobs = [
   {
@@ -142,6 +143,29 @@ export default function App() {
                       return <Job key={job.company} {...{ job }} />;
                     })}
                   </List>
+
+                  {/* <Button
+                    onClick={() =>
+                      ReactPDF.renderToStream(
+                        <Resume />,
+                        // `${__dirname}/Steve Ernstberger Resume.pdf`
+                      )
+                    }
+                  >
+                    click
+                  </Button> */}
+
+
+
+                  <PDFDownloadLink document={<Resume />} fileName="somename.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download now!'
+      }
+    </PDFDownloadLink>
+
+                  <PDFViewer>
+                    <Resume />
+                  </PDFViewer>
                 </div>
               </Route>
             </Switch>
