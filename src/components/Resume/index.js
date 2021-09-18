@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 const { jobs } = resumeData;
-console.log("!!!", jobs);
+// console.log("!!!", jobs);
 
 // Create Document Component
 const Resume = () => (
