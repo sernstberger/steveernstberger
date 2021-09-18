@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { Email, GitHub } from "@mui/icons-material";
 import IconLinkButton from "./components/IconLinkButton";
+import WorkHighlight from "./components/WorkHighlight";
 
 interface HeaderProps {
   sections: ReadonlyArray<{
@@ -53,10 +54,12 @@ export default function App() {
               document={<Resume />}
               fileName="Steve Ernstberger Resume.pdf"
             >
-              Download
-              {({ blob, url, loading, error }: any) =>
-                loading ? "Loading document..." : "Download resume"
-              }
+              <span>
+                Download
+                {({ blob, url, loading, error }: any) =>
+                  loading ? "Loading document..." : "Download resume"
+                }
+              </span>
             </Button>
           </Toolbar>
           <Toolbar
@@ -86,7 +89,6 @@ export default function App() {
                   {section.title}
                 </Link>
               ))} */}
-            things
           </Toolbar>
         </>
 
@@ -112,17 +114,27 @@ export default function App() {
                     trivia, and drawing.
                   </Typography>
                   <Typography variant="h3">Selected Work</Typography>
-                  Vemo Education Development of applications to help students
+                  <WorkHighlight
+                    company="Vemo Education"
+                    description="Development of applications to help students
                   decide whether to get a traditional student loan or an income
                   share agreement (ISA), apply, and make payments, as well as,
                   an application to help school administrators track students in
-                  their application process. Cummins PrevenTech Development of
-                  application that tracks the status of mining equipment that
-                  alerts customers and care agents when problems arise.
-                  ExactTarget HubExchange Implemented user interface for
-                  ExactTarget’s (now Salesforce) app store - HubExchange.
+                  their application process."
+                  />
+                  <WorkHighlight
+                    company="Cummins PrevenTech"
+                    description="Development of application that tracks the
+                    status of mining equipment that alerts customers and care
+                    agents when problems arise."
+                  />
+                  <WorkHighlight
+                    company="ExactTarget HubExchange"
+                    description="Implemented user interface for ExactTarget’s (now Salesforce)
+                    app store - HubExchange."
+                  />
                 </div>
-                <Typography>Experience</Typography>
+                <Typography variant="h3">Experience</Typography>
                 <List>
                   {jobs.map((job: any) => {
                     return <Job key={job.company} {...{ job }} />;
