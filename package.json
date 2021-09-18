@@ -10,6 +10,7 @@
     "@nivo/core": "^0.73.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "date-fns": "^2.24.0",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
