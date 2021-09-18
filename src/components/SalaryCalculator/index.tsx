@@ -46,6 +46,7 @@ const SalaryCalculator = () => {
 
   return (
     <div>
+      <Typography variant="h1">Income calculator</Typography>
       <TextField
         id="annual-income"
         label="Annual income"

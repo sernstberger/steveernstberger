@@ -10,6 +10,10 @@ export default function App() {
         <Typography variant="h4" component="h1" gutterBottom>
           Steve Ernstberger
         </Typography>
+        <Typography>Contact: steve.ernstberger.dev@gmail.com</Typography>
+        <hr />
+        <br />
+        <br />
         <SalaryCalculator />
       </Box>
     </Container>
