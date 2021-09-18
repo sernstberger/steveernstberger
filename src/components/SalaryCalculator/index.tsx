@@ -113,7 +113,22 @@ const SalaryCalculator = () => {
   const [startingSalary, setStartingSalary] = useState(0);
 
   const res = Array.from(Array(10)).map((_, i) => {
-    return i * startingSalary;
+    // return i * startingSalary;
+    return {
+      country: i,
+      "hot dog": 0,
+      "hot dogColor": "hsl(193, 70%, 50%)",
+      burger: 131,
+      burgerColor: "hsl(213, 70%, 50%)",
+      sandwich: 42,
+      sandwichColor: "hsl(7, 70%, 50%)",
+      kebab: 140,
+      kebabColor: "hsl(352, 70%, 50%)",
+      fries: 141,
+      friesColor: "hsl(303, 70%, 50%)",
+      donut: 103,
+      donutColor: "hsl(5, 70%, 50%)",
+    }
   });
 
   console.log(res);
@@ -125,10 +140,10 @@ const SalaryCalculator = () => {
         onChange={(e: any) => setStartingSalary(e.target.value)}
       />
       {startingSalary}
-      {res.map((bar, index) => (
+      {/* {res.map((bar, index) => (
         <div>{bar}</div>
-      ))}
-      <SalaryChart data={data} />
+      ))} */}
+      <SalaryChart data={res} />
     </div>
   );
 };
