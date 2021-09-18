@@ -4,7 +4,7 @@ const SalaryChart = ({ data }: any) => (
     <ResponsiveBar
       data={data}
       // keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-      keys={["hot dog"]}
+      keys={["net", "taxes"]}
       indexBy="date"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
@@ -47,7 +47,7 @@ const SalaryChart = ({ data }: any) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "food",
+        legend: "salary",
         legendPosition: "middle",
         legendOffset: -40,
       }}
