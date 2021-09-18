@@ -1,6 +1,7 @@
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import SalaryCalculator from "./components/SalaryCalculator";
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
         <Typography variant="h4" component="h1" gutterBottom>
           Steve Ernstberger
         </Typography>
+        <SalaryCalculator />
       </Box>
     </Container>
   );
