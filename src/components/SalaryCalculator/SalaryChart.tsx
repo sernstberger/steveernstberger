@@ -1,12 +1,11 @@
 import { ResponsiveBar } from "@nivo/bar";
-// website examples showcase many properties,
-// you'll often use just a few of them.
 const SalaryChart = ({ data }: any) => (
   <div style={{ height: 400 }}>
     <ResponsiveBar
       data={data}
-      keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
-      indexBy="country"
+      // keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+      keys={["hot dog"]}
+      indexBy="date"
       margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
@@ -33,20 +32,6 @@ const SalaryChart = ({ data }: any) => (
           spacing: 10,
         },
       ]}
-      fill={[
-        {
-          match: {
-            id: "fries",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "sandwich",
-          },
-          id: "lines",
-        },
-      ]}
       borderColor={{ from: "color", modifiers: [["darker", 1.6]] }}
       axisTop={null}
       axisRight={null}
@@ -54,7 +39,7 @@ const SalaryChart = ({ data }: any) => (
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "country",
+        legend: "date",
         legendPosition: "middle",
         legendOffset: 32,
       }}
