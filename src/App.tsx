@@ -1,4 +1,10 @@
-import { Box, Typography, Container, Link as MuiLink } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Container,
+  Link as MuiLink,
+  Grid,
+} from "@mui/material";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SalaryCalculator from "./components/SalaryCalculator";
 import Job from "./components/Job";
@@ -44,33 +50,45 @@ export default function App() {
                     my free time I enjoy traveling, watching movies, playing
                     trivia, and drawing.
                   </Typography>
-                  <Typography variant="h3">Selected Work</Typography>
-                  <WorkHighlight
-                    company="Vemo Education"
-                    description="Development of applications to help students
+                  <Typography variant="h3" mt={6}>
+                    Selected Work
+                  </Typography>
+                  <Grid container justifyContent="space-between">
+                    <Grid item xs={12} sm={5}>
+                      <WorkHighlight
+                        company="Vemo Education"
+                        description="Development of applications to help students
                   decide whether to get a traditional student loan or an income
                   share agreement (ISA), apply, and make payments, as well as,
                   an application to help school administrators track students in
                   their application process."
-                  />
-                  <WorkHighlight
-                    company="Cummins PrevenTech"
-                    description="Development of application that tracks the
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <WorkHighlight
+                        company="Cummins PrevenTech"
+                        description="Development of application that tracks the
                     status of mining equipment that alerts customers and care
                     agents when problems arise."
-                  />
-                  <WorkHighlight
-                    company="ExactTarget HubExchange"
-                    description="Implemented user interface for ExactTarget’s (now Salesforce)
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <WorkHighlight
+                        company="ExactTarget HubExchange"
+                        description="Implemented user interface for ExactTarget’s (now Salesforce)
                     app store - HubExchange."
-                  />
+                      />
+                    </Grid>
+                  </Grid>
                 </div>
-                <Typography variant="h3">Experience</Typography>
-                <List>
+                <Typography variant="h3" mt={6}>
+                  Experience
+                </Typography>
+                <div>
                   {jobs.map((job: any) => {
                     return <Job key={job.company} {...{ job }} />;
                   })}
-                </List>
+                </div>
 
                 <PDFViewer height="800" width="1000">
                   <Resume />

@@ -1,4 +1,4 @@
-import { Box, Chip, Stack, Typography } from "@mui/material";
+import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
 
 const SalaryCalculator = (props: any) => {
   const {
@@ -12,23 +12,26 @@ const SalaryCalculator = (props: any) => {
     },
   } = props;
   return (
-    <Box borderBottom="1px solid red" py={2}>
-      <Typography>
-        <strong>{title}</strong>
-      </Typography>
-      <Typography variant="body2" color="theme.palette">
-        <em>{`${company} | ${startDate} - ${endDate}`}</em>
-      </Typography>
+    <>
+      <Box py={2}>
+        <Typography>
+          <strong>{title}</strong>
+        </Typography>
+        <Typography variant="body2" color="text.secondary" fontStyle="italic">
+          {`${company} | ${startDate} - ${endDate}`}
+        </Typography>
 
-      {description && <Typography mt={1}>{description}</Typography>}
-      {technologies && (
-        <Stack direction="row" spacing={1} mt={1}>
-          {technologies.map((tech: any) => {
-            return <Chip label={tech} variant="outlined" />;
-          })}
-        </Stack>
-      )}
-    </Box>
+        {description && <Typography mt={1}>{description}</Typography>}
+        {technologies && (
+          <Stack direction="row" spacing={1} mt={1}>
+            {technologies.map((tech: any) => {
+              return <Chip label={tech} variant="outlined" />;
+            })}
+          </Stack>
+        )}
+      </Box>
+      <Divider />
+    </>
   );
 };
 
