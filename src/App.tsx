@@ -90,9 +90,9 @@ export default function App() {
                   })}
                 </div>
 
-                <PDFViewer height="800" width="1000">
+                {/* <PDFViewer height="800" width="1000">
                   <Resume />
-                </PDFViewer>
+                </PDFViewer> */}
               </div>
             </Route>
           </Switch>

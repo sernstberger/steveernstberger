@@ -1,21 +1,16 @@
-import { AppBar, Typography, Container, Link as MuiLink } from "@mui/material";
+import { AppBar, Typography, Link as MuiLink } from "@mui/material";
 import { Link } from "react-router-dom";
-import { List } from "@mui/material";
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
-import Resume from "../Resume";
-import resumeData from "../Resume/data";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 import { Email, GitHub } from "@mui/icons-material";
 import IconLinkButton from "../IconLinkButton";
+import CreatePdfButton from "../CreatePdfButton";
 
 const sections: any[] = [
   { title: "Home", url: "/" },
   { title: "Income calculator", url: "/income-calculator" },
 ];
 
-const Header = (props: any) => {
-  const { company, description } = props;
+const Header = () => {
   return (
     <AppBar position="static" color="default" elevation={0}>
       <Toolbar
@@ -59,20 +54,7 @@ const Header = (props: any) => {
         </nav>
 
         <div>
-          <Button
-            variant="outlined"
-            size="small"
-            component={PDFDownloadLink}
-            document={<Resume />}
-            fileName="Steve Ernstberger Resume.pdf"
-          >
-            <span>
-              Download Resume
-              {({ blob, url, loading, error }: any) =>
-                loading ? "Loading document..." : "Download resume"
-              }
-            </span>
-          </Button>
+          <CreatePdfButton />
 
           <IconLinkButton
             icon={<GitHub />}

@@ -23,12 +23,16 @@ const SalaryCalculator = (props: any) => {
 
         {description &&
           description.map((single: any) => {
-            return <Typography mt={1}>{single}</Typography>;
+            return (
+              <Typography key={single} mt={1}>
+                {single}
+              </Typography>
+            );
           })}
         {technologies && (
           <Stack direction="row" spacing={1} mt={1}>
             {technologies.map((tech: any) => {
-              return <Chip label={tech} variant="outlined" />;
+              return <Chip key={tech} label={tech} variant="outlined" />;
             })}
           </Stack>
         )}
