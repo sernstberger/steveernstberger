@@ -8,6 +8,9 @@ import {
   Font,
 } from "@react-pdf/renderer";
 import resumeData from "./data";
+import font from "./Bungee-Regular.ttf";
+import foo from "./Roboto-Regular.ttf";
+import blah from "./CrimsonPro-Regular.ttf";
 
 const styles = StyleSheet.create({
   page: {
@@ -16,15 +19,18 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   header: {
+    fontFamily: "Bungee",
     fontSize: 20,
     fontWeight: 700,
   },
   title: {
+    color: "#666666",
+    fontFamily: "Bungee",
     fontSize: 16,
-    fontWeight: 700,
     marginTop: 50,
   },
   subtitle: {
+    fontFamily: "Bungee",
     fontSize: 14,
     fontWeight: 700,
   },
@@ -34,6 +40,27 @@ const styles = StyleSheet.create({
     marginTop: 16,
     // flexGrow: 1,
   },
+  paragraph: {
+    fontSize: 14,
+    marginTop: 4,
+    fontFamily: "Crimson",
+    lineHeight: 1.5,
+  },
+});
+
+Font.register({
+  family: "Bungee",
+  src: font,
+});
+
+Font.register({
+  family: "Roboto",
+  src: foo,
+});
+
+Font.register({
+  family: "Crimson",
+  src: blah,
 });
 
 const { jobs } = resumeData;
@@ -42,17 +69,18 @@ const Resume = () => (
   <Document>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text style={styles.header}>
-          <strong>Steve Ernstberger</strong> - Lead Front-End Developer
-        </Text>
+        <Text style={styles.header}>Steve Ernstberger</Text>
+        <Text style={styles.title}>Lead Front-End Developer</Text>
         <View style={{ display: "flex", justifyContent: "space-between" }}>
-          <Text style={{ fontSize: 12 }}>317.413.2489</Text>
+          <Text style={{ fontSize: 12, fontFamily: "Roboto" }}>
+            317.413.2489
+          </Text>
           <Text style={{ fontSize: 12 }}>steve.ernstberger.dev@gmail.com</Text>
           <Text style={{ fontSize: 12 }}>github.com/sernstberger</Text>
         </View>
 
         <Text style={styles.title}>Expertise</Text>
-        <Text style={{ fontSize: 12, marginTop: 4 }}>
+        <Text style={styles.paragraph}>
           I am a Front-End Developer with 14 years of professional experience. I
           have worked with large enterprise clients like Cummins, Interactive
           Intelligence, and ExactTarget, start-ups with one employee, and
@@ -85,7 +113,7 @@ const Resume = () => (
             {description &&
               description.map((single) => {
                 return (
-                  <Text key={single} style={{ fontSize: 12, marginTop: 4 }}>
+                  <Text key={single} style={styles.paragraph}>
                     {single}
                   </Text>
                 );
