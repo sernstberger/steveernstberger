@@ -21,7 +21,10 @@ const SalaryCalculator = (props: any) => {
           {`${company} | ${startDate} - ${endDate}`}
         </Typography>
 
-        {description && <Typography mt={1}>{description}</Typography>}
+        {description &&
+          description.map((single: any) => {
+            return <Typography mt={1}>{single}</Typography>;
+          })}
         {technologies && (
           <Stack direction="row" spacing={1} mt={1}>
             {technologies.map((tech: any) => {

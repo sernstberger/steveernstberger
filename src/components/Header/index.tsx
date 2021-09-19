@@ -1,4 +1,4 @@
-import { Box, Typography, Container, Link as MuiLink } from "@mui/material";
+import { AppBar, Typography, Container, Link as MuiLink } from "@mui/material";
 import { Link } from "react-router-dom";
 import { List } from "@mui/material";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
@@ -17,10 +17,18 @@ const sections: any[] = [
 const Header = (props: any) => {
   const { company, description } = props;
   return (
-    <>
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
+    <AppBar position="static" color="default" elevation={0}>
+      <Toolbar
+        sx={{
+          borderBottom: 1,
+          borderColor: "divider",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
         <div>
           <Typography
+            fontWeight="bold"
             component="h2"
             variant="h5"
             color="inherit"
@@ -29,38 +37,9 @@ const Header = (props: any) => {
           >
             Steve Ernstberger
           </Typography>
-          <Typography>Front-End Developer</Typography>
+          <Typography variant="body2">Front-End Developer</Typography>
         </div>
 
-        <IconLinkButton
-          icon={<GitHub />}
-          href="https://github.com/sernstberger"
-        />
-        <IconLinkButton
-          icon={<Email />}
-          href="mailto:steve.ernstberger.dev@gmail.com"
-        />
-
-        <Button
-          variant="outlined"
-          size="small"
-          component={PDFDownloadLink}
-          document={<Resume />}
-          fileName="Steve Ernstberger Resume.pdf"
-        >
-          <span>
-            Download
-            {({ blob, url, loading, error }: any) =>
-              loading ? "Loading document..." : "Download resume"
-            }
-          </span>
-        </Button>
-      </Toolbar>
-      <Toolbar
-        component="nav"
-        variant="dense"
-        sx={{ justifyContent: "space-between", overflowX: "auto" }}
-      >
         <nav>
           <ul>
             {sections.map((section: any) => (
@@ -78,8 +57,34 @@ const Header = (props: any) => {
             ))}
           </ul>
         </nav>
+
+        <div>
+          <Button
+            variant="outlined"
+            size="small"
+            component={PDFDownloadLink}
+            document={<Resume />}
+            fileName="Steve Ernstberger Resume.pdf"
+          >
+            <span>
+              Download Resume
+              {({ blob, url, loading, error }: any) =>
+                loading ? "Loading document..." : "Download resume"
+              }
+            </span>
+          </Button>
+
+          <IconLinkButton
+            icon={<GitHub />}
+            href="https://github.com/sernstberger"
+          />
+          <IconLinkButton
+            icon={<Email />}
+            href="mailto:steve.ernstberger.dev@gmail.com"
+          />
+        </div>
       </Toolbar>
-    </>
+    </AppBar>
   );
 };
 

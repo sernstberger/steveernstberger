@@ -25,7 +25,7 @@ let theme = createTheme({
     },
     h3: {
       fontSize: "2rem",
-      fontFamily: "'Titan One', cursive",
+      fontFamily: "'Bungee', cursive",
     },
     h4: {
       fontSize: "1.5rem",
