@@ -1,11 +1,10 @@
 import { usePDF } from "@react-pdf/renderer";
 import Resume from "../Resume";
 import Button from "@mui/material/Button";
+import { CircularProgress } from "@mui/material";
 
 const CreatePdfButton = () => {
   const [instance, updateInstance] = usePDF({ document: <Resume /> });
-
-  if (instance.loading) return <div>Loading ...</div>;
 
   // if (instance.error) return <div>Something went wrong: {error}</div>;
   if (instance.error) return <div>Something went wrong</div>;
@@ -17,8 +16,10 @@ const CreatePdfButton = () => {
       // @ts-ignore
       href={instance.url}
       download="Steve Ernstberger Resume.pdf"
+      disabled={instance.loading}
+      startIcon={instance.loading ? <CircularProgress size={12} /> : undefined}
     >
-      Download
+      Download Resume
     </Button>
   );
 };

@@ -9,8 +9,8 @@ import {
 } from "@react-pdf/renderer";
 import resumeData from "./data";
 import font from "./Bungee-Regular.ttf";
-import foo from "./Roboto-Regular.ttf";
-import blah from "./CrimsonPro-Regular.ttf";
+import robotoFont from "./Roboto-Regular.ttf";
+import crimsonFont from "./CrimsonPro-Regular.ttf";
 
 const styles = StyleSheet.create({
   page: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     color: "#666666",
     fontFamily: "Bungee",
     fontSize: 16,
-    marginTop: 50,
+    marginTop: 40,
   },
   subtitle: {
     fontFamily: "Bungee",
@@ -40,11 +40,22 @@ const styles = StyleSheet.create({
     marginTop: 16,
     // flexGrow: 1,
   },
+  text: {
+    fontSize: 12,
+    fontFamily: "Roboto",
+  },
   paragraph: {
     fontSize: 14,
     marginTop: 4,
     fontFamily: "Crimson",
     lineHeight: 1.5,
+  },
+  skill: {
+    border: "1px solid #666",
+    borderRadius: 20,
+    padding: "2px 8px",
+    marginTop: 4,
+    marginRight: 4,
   },
 });
 
@@ -55,12 +66,12 @@ Font.register({
 
 Font.register({
   family: "Roboto",
-  src: foo,
+  src: robotoFont,
 });
 
 Font.register({
   family: "Crimson",
-  src: blah,
+  src: crimsonFont,
 });
 
 const { jobs } = resumeData;
@@ -70,13 +81,13 @@ const Resume = () => (
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text style={styles.header}>Steve Ernstberger</Text>
-        <Text style={styles.title}>Lead Front-End Developer</Text>
+        <Text style={[styles.title, { marginTop: 0 }]}>
+          Lead Front-End Developer
+        </Text>
         <View style={{ display: "flex", justifyContent: "space-between" }}>
-          <Text style={{ fontSize: 12, fontFamily: "Roboto" }}>
-            317.413.2489
-          </Text>
-          <Text style={{ fontSize: 12 }}>steve.ernstberger.dev@gmail.com</Text>
-          <Text style={{ fontSize: 12 }}>github.com/sernstberger</Text>
+          <Text style={styles.text}>317.413.2489</Text>
+          <Text style={styles.text}>steve.ernstberger.dev@gmail.com</Text>
+          <Text style={styles.text}>github.com/sernstberger</Text>
         </View>
 
         <Text style={styles.title}>Expertise</Text>
@@ -90,8 +101,46 @@ const Resume = () => (
           my free time I enjoy traveling, watching movies, playing trivia, and
           drawing.
         </Text>
-        {/* <Text style={styles.title}>Selected work</Text>
-        <Text>fooooooo</Text> */}
+        <Text style={styles.title}>Technologies</Text>
+
+        <View
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            flexDirection: "row",
+          }}
+        >
+          {[
+            "React",
+            "Javascript",
+            "HTML5 / CSS3",
+            "Material UI",
+            "Storybook",
+          ].map((tech) => {
+            return (
+              <View key={tech} style={styles.skill}>
+                <Text style={styles.text}>{tech}</Text>
+              </View>
+            );
+          })}
+        </View>
+        <View
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            flexDirection: "row",
+          }}
+        >
+          {["Git", "Bootstrap", "WordPress", "Photoshop", "Sketch"].map(
+            (tech) => {
+              return (
+                <View key={tech} style={styles.skill}>
+                  <Text style={styles.text}>{tech}</Text>
+                </View>
+              );
+            }
+          )}
+        </View>
 
         <Text style={styles.title}>Experience</Text>
       </View>
@@ -108,7 +157,8 @@ const Resume = () => (
             <Text style={styles.subtitle}>{title}</Text>
 
             <Text
-              style={{ fontSize: 12, fontStyle: "italic", color: "#666666" }}
+              style={[styles.text, { color: "#666666" }]}
+              // style={{ fontSize: 12, fontStyle: "italic", color: "#666666" }}
             >{`${company} | ${startDate} - ${endDate}`}</Text>
             {description &&
               description.map((single) => {
