@@ -11,24 +11,41 @@ import {
 import SalaryChart from "./SalaryChart";
 import { addYears, format } from "date-fns";
 import { DataStructure, FormattedNumber } from "../../types";
+import formatNumber from "../../utils/formatNumber";
+import { useFormik } from "formik";
+import { string, object } from "yup";
+import Form from "./Form";
 
-const formatNumber = (amount: number): FormattedNumber => {
-  const formatted = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-  return {
-    raw: amount,
-    formatted,
-  };
-};
+// const validationSchema = object({
+//   email: string("Enter your email"),
+//     // .email("Enter a valid email")
+//     // .required("Email is required"),
+//   password: yup
+//     // .string("Enter your password")
+//     // .min(8, "Password should be of minimum 8 characters length")
+//     .required("Password is required"),
+// });
 
 const SalaryCalculator = () => {
   const [startingSalary, setStartingSalary] = useState(20000);
+  const [growthRate, setGrowthRate] = useState(4);
+  const [years, setYears] = useState(20);
 
-  const res: DataStructure[] = Array.from(Array(30)).map((_, i) => {
-    const growthRate = 0.05 * i;
-    const multiple = 1 + growthRate;
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: "foobar@example.com",
+  //     password: "foobar",
+  //   },
+  //   validationSchema,
+  //   onSubmit: (values) => {
+  //     alert(JSON.stringify(values, null, 2));
+  //   },
+  // });
+
+  const res: DataStructure[] = Array.from(Array(years)).map((_, i) => {
+    console.log("!!!", "goooo");
+    const foo = (growthRate / 100) * i;
+    const multiple = 1 + foo;
     const gross = startingSalary * multiple;
     const date = addYears(new Date(), i);
     // const formattedDate = format(date, "MM/yyyy");
@@ -58,7 +75,59 @@ const SalaryCalculator = () => {
         }
       />
 
-      <Typography>5% growth each year for 30 years</Typography>
+      <TextField
+        id="growth-rate"
+        label="Annual growth rate"
+        type="number"
+        variant="outlined"
+        value={growthRate}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setGrowthRate(parseInt(e.target.value, 10))
+        }
+      />
+
+      <TextField
+        id="years"
+        label="Years"
+        type="number"
+        variant="outlined"
+        value={years}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setYears(parseInt(e.target.value, 10))
+        }
+      />
+
+      {/* <form onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        <Button color="primary" variant="contained" fullWidth type="submit">
+          Submit
+        </Button>
+      </form> */}
+      <Form />
+
+      <Typography>
+        {growthRate}% growth each year for {years} years
+      </Typography>
       <SalaryChart data={res} />
       <Typography>Breakdown by year</Typography>
       {res.length !== 0 ? (
