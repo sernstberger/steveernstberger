@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SalaryCalculator from "./components/SalaryCalculator";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -22,7 +22,7 @@ export default function App() {
             <Route path="/income-calculator">
               <SalaryCalculator />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
             </Route>
           </Switch>
