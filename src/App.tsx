@@ -36,7 +36,7 @@ export default function App() {
               <SalaryCalculator />
             </Route>
             <Route path="/">
-              <div>
+              <div style={{ padding: "40px 0" }}>
                 <div>
                   <Typography variant="h3">Expertise</Typography>
                   <Typography>
@@ -50,7 +50,7 @@ export default function App() {
                     my free time I enjoy traveling, watching movies, playing
                     trivia, and drawing.
                   </Typography>
-                  <Typography variant="h3" mt={6}>
+                  {/* <Typography variant="h3" mt={6}>
                     Selected Work
                   </Typography>
                   <Grid container justifyContent="space-between">
@@ -79,7 +79,7 @@ export default function App() {
                     app store - HubExchange."
                       />
                     </Grid>
-                  </Grid>
+                  </Grid> */}
                 </div>
                 <Typography variant="h3" mt={6}>
                   Experience

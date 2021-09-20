@@ -47,7 +47,7 @@ const jobs = [
     company: "DWA Healthcare Communications Group",
     startDate: "2013",
     endDate: "2013",
-    title: "Front end developer",
+    title: "Front-end developer",
     description: [
       "At DWA, I built web interfaces for Team A - Anticoag and Eli Lilly. I also shot and edited training videos for Roche.",
     ],
