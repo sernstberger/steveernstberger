@@ -20,20 +20,16 @@ const Form = () => {
   return (
     <FormikForm>
       <Grid container spacing={3}>
-        <Grid item md={4} xs={12}>
-          <Input
-            name="startingSalary"
-            label="Starting salary"
-            helperText="Fooooooooo"
-          />
+        <Grid item md={3} xs={12}>
+          <Input name="startingSalary" label="Starting salary" />
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid item md={3} xs={12}>
           <Input name="growthRate" label="Growth rate" />
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid item md={3} xs={12}>
           <Input name="years" label="Years" />
         </Grid>
-        <Grid item md={4} xs={12}>
+        <Grid item md={3} xs={12}>
           <Button
             type="submit"
             variant="contained"

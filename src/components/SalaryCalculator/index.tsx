@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -15,7 +15,7 @@ import {
   IncomeCalculatorFormProps,
 } from "../../types";
 import formatNumber from "../../utils/formatNumber";
-import { useFormik, Formik, FormikProps } from "formik";
+import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Form from "./Form";
 import calculateMonthly from "./calculateMonthly";
@@ -28,8 +28,8 @@ const SalaryCalculator = () => {
 
       <Formik
         initialValues={{
-          startingSalary: 20000,
-          growthRate: 5,
+          startingSalary: 40000,
+          growthRate: 3,
           years: 20,
         }}
         onSubmit={(values: any) => {
@@ -52,19 +52,31 @@ const SalaryCalculator = () => {
             handleBlur,
             handleChange,
             isSubmitting,
+            setSubmitting,
+            submitCount,
           } = props;
+
+          useEffect(() => {
+            const res: any = calculateMonthly(
+              startingSalary,
+              growthRate,
+              years
+            );
+            setData(res);
+            setSubmitting(false);
+          }, []);
+
+          useEffect(() => {
+            setSubmitting(false);
+          }, [submitCount]);
 
           return (
             <>
               <Form />
-
-              <Typography>
-                {growthRate}% growth each year for {years} years
-              </Typography>
               <SalaryChart data={data} />
               <Typography>Breakdown by year</Typography>
               {data.length !== 0 ? (
-                <Table>
+                <Table size="small">
                   <TableHead>
                     <TableRow>
                       <TableCell>date</TableCell>
