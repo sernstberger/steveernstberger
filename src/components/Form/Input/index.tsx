@@ -16,6 +16,7 @@ const Input = (props: InputProps) => {
       {...{ name, label }}
       id={name}
       value={values[name]}
+      variant="outlined"
       type="number"
       helperText={errors[name] && touched[name] ? errors[name] : helperText}
       error={errors[name] && touched[name] ? true : false}
