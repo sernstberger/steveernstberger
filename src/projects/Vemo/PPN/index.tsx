@@ -8,15 +8,17 @@ import {
 import { ThemeProvider, styled } from "@mui/material/styles";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
 import Input from "../../../componentLibrary/Form/Input";
 import vemoTheme from "../theme";
 
 const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
-  minHeight: "100vh",
+  minHeight: "calc(100vh - 64px)",
 }));
 
 const PPN = () => {
+  const history = useHistory();
   return (
     <ThemeProvider theme={vemoTheme}>
       <Background>
@@ -28,15 +30,17 @@ const PPN = () => {
               <Formik
                 initialValues={{ email: "", password: "" }}
                 validationSchema={Yup.object().shape({
-                  email: Yup.number().required(),
-                  password: Yup.number().required(),
+                  email: Yup.string().email().required(),
+                  password: Yup.string().required(),
                 })}
-                onSubmit={() => {}}
+                onSubmit={() => {
+                  history.push("/");
+                }}
               >
                 <Form>
                   <Input label="Email" name="email" />
                   <Input label="Password" name="password" />
-                  <Button>Sign in</Button>
+                  <Button onClick={() => history.push("/")}>Sign in</Button>
                 </Form>
               </Formik>
             </CardContent>

@@ -1,8 +1,8 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-// A custom theme for this app
-const theme = createTheme({
+let theme = createTheme({
   palette: {
+    // mode: "dark",
     primary: {
       main: "#0073D1",
     },
@@ -48,6 +48,22 @@ const theme = createTheme({
     },
     h6: {
       fontSize: "1.1rem",
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  components: {
+    MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 50,
+        },
+      },
     },
   },
 });
