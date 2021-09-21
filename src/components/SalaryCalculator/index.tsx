@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -6,89 +6,101 @@ import {
   TableCell,
   TableHead,
   Typography,
-  TextField,
 } from "@mui/material";
 import SalaryChart from "./SalaryChart";
-import { addYears, format } from "date-fns";
-import { DataStructure, FormattedNumber } from "../../types";
-
-const formatNumber = (amount: number): FormattedNumber => {
-  const formatted = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-  return {
-    raw: amount,
-    formatted,
-  };
-};
+import { DataStructure, IncomeCalculatorFormProps } from "../../types";
+import { Formik, FormikProps } from "formik";
+import * as Yup from "yup";
+import Form from "./Form";
+import calculateMonthly from "./calculateMonthly";
 
 const SalaryCalculator = () => {
-  const [startingSalary, setStartingSalary] = useState(20000);
-
-  const res: DataStructure[] = Array.from(Array(30)).map((_, i) => {
-    const growthRate = 0.05 * i;
-    const multiple = 1 + growthRate;
-    const gross = startingSalary * multiple;
-    const date = addYears(new Date(), i);
-    // const formattedDate = format(date, "MM/yyyy");
-    const formattedDate = format(date, "yyyy");
-
-    return {
-      date: formattedDate,
-      net: formatNumber(gross * 0.7),
-      taxes: formatNumber(gross * 0.3),
-      gross: formatNumber(gross),
-      monthlyGross: formatNumber(gross / 12),
-      monthlyNet: formatNumber((gross * 0.7) / 12),
-    };
-  });
-
+  const [data, setData] = useState<DataStructure[]>([]);
   return (
     <div>
       <Typography variant="h1">Income calculator</Typography>
-      <TextField
-        id="annual-income"
-        label="Annual income"
-        type="number"
-        variant="outlined"
-        value={startingSalary}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setStartingSalary(parseInt(e.target.value, 10))
-        }
-      />
 
-      <Typography>5% growth each year for 30 years</Typography>
-      <SalaryChart data={res} />
-      <Typography>Breakdown by year</Typography>
-      {res.length !== 0 ? (
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>date</TableCell>
-              <TableCell>net</TableCell>
-              <TableCell>taxes</TableCell>
-              <TableCell>gross</TableCell>
-              <TableCell>monthly gross</TableCell>
-              <TableCell>monthly net</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {res.map((bar) => (
-              <TableRow key={bar.date}>
-                <TableCell>{bar.date}</TableCell>
-                <TableCell>{bar.net.formatted}</TableCell>
-                <TableCell>{bar.taxes.formatted}</TableCell>
-                <TableCell>{bar.gross.formatted}</TableCell>
-                <TableCell>{bar.monthlyGross.formatted}</TableCell>
-                <TableCell>{bar.monthlyNet.formatted}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      ) : (
-        <div>nope</div>
-      )}
+      <Formik
+        initialValues={{
+          startingSalary: 40000,
+          growthRate: 3,
+          years: 20,
+        }}
+        onSubmit={(values: IncomeCalculatorFormProps) => {
+          const { startingSalary, growthRate, years } = values;
+          const res: DataStructure[] = calculateMonthly(
+            startingSalary,
+            growthRate,
+            years
+          );
+          setData(res);
+        }}
+        validationSchema={Yup.object().shape({
+          startingSalary: Yup.number().required(),
+          growthRate: Yup.number().required(),
+          years: Yup.number().required(),
+        })}
+      >
+        {(props: FormikProps<IncomeCalculatorFormProps>) => {
+          const {
+            values: { growthRate, years, startingSalary },
+            setSubmitting,
+            submitCount,
+          } = props;
+
+          useEffect(() => {
+            const res: DataStructure[] = calculateMonthly(
+              startingSalary,
+              growthRate,
+              years
+            );
+            setData(res);
+            setSubmitting(false);
+          }, []);
+
+          useEffect(() => {
+            setSubmitting(false);
+          }, [submitCount]);
+
+          return (
+            <>
+              <Form />
+              <SalaryChart data={data} />
+              <Typography>Breakdown by year</Typography>
+              {data.length !== 0 ? (
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>date</TableCell>
+                      <TableCell>net</TableCell>
+                      <TableCell>taxes</TableCell>
+                      <TableCell>gross</TableCell>
+                      <TableCell>monthly gross</TableCell>
+                      <TableCell>monthly net</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data.map((singleData: DataStructure) => (
+                      <TableRow key={singleData.date}>
+                        <TableCell>{singleData.date}</TableCell>
+                        <TableCell>{singleData.net.formatted}</TableCell>
+                        <TableCell>{singleData.taxes.formatted}</TableCell>
+                        <TableCell>{singleData.gross.formatted}</TableCell>
+                        <TableCell>
+                          {singleData.monthlyGross.formatted}
+                        </TableCell>
+                        <TableCell>{singleData.monthlyNet.formatted}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              ) : (
+                <div>nope</div>
+              )}
+            </>
+          );
+        }}
+      </Formik>
     </div>
   );
 };

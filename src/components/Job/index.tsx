@@ -1,15 +1,14 @@
 import { Box, Chip, Divider, Stack, Typography } from "@mui/material";
+import { JobProps } from "../../types";
 
-const SalaryCalculator = (props: any) => {
+const Job = (props: JobProps) => {
   const {
-    job: {
-      company,
-      description,
-      title,
-      startDate,
-      endDate = "present",
-      technologies,
-    },
+    company,
+    description,
+    title,
+    startDate,
+    endDate = "present",
+    technologies,
   } = props;
   return (
     <>
@@ -22,7 +21,7 @@ const SalaryCalculator = (props: any) => {
         </Typography>
 
         {description &&
-          description.map((single: any) => {
+          description.map((single: string) => {
             return (
               <Typography key={single} mt={1}>
                 {single}
@@ -31,7 +30,7 @@ const SalaryCalculator = (props: any) => {
           })}
         {technologies && (
           <Stack direction="row" spacing={1} mt={1}>
-            {technologies.map((tech: any) => {
+            {technologies.map((tech: string) => {
               return <Chip key={tech} label={tech} variant="outlined" />;
             })}
           </Stack>
@@ -42,4 +41,4 @@ const SalaryCalculator = (props: any) => {
   );
 };
 
-export default SalaryCalculator;
+export default Job;

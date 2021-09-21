@@ -11,3 +11,18 @@ export interface DataStructure {
   monthlyGross: FormattedNumber;
   monthlyNet: FormattedNumber;
 }
+
+export interface IncomeCalculatorFormProps {
+  startingSalary: number;
+  growthRate: number;
+  years: number;
+}
+
+export interface JobProps {
+  company: string;
+  description: string[];
+  title: string;
+  startDate: string;
+  endDate?: string;
+  technologies?: string[];
+}

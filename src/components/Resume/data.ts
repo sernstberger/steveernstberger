@@ -1,4 +1,6 @@
-const jobs = [
+import { JobProps } from "../../types";
+
+const jobs: JobProps[] = [
   {
     company: "Vemo Education",
     title: "Lead Front-End Developer",
