@@ -13,7 +13,7 @@ export default function App() {
           <Route path="/income-calculator">
             <SalaryCalculator />
           </Route>
-          <Route path="/Vemo">
+          <Route path="/vemo">
             <PPN />
           </Route>
           <Route exact path="/">

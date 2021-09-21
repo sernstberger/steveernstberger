@@ -25,5 +25,7 @@ module.exports = {
     "arrow-body-style": "off",
     "react/prop-types": "off",
     "react/require-default-props": "off",
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
   },
 };
