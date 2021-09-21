@@ -8,10 +8,10 @@ import {
   Typography,
   Container,
 } from "@mui/material";
+import { Formik } from "formik";
+import * as Yup from "yup";
 import SalaryChart from "./SalaryChart";
 import { DataStructure, IncomeCalculatorFormProps } from "../../types";
-import { Formik, FormikProps } from "formik";
-import * as Yup from "yup";
 import Form from "./Form";
 import calculateMonthly from "./calculateMonthly";
 
@@ -42,7 +42,7 @@ const SalaryCalculator = () => {
           years: Yup.number().required(),
         })}
       >
-        {(props: FormikProps<IncomeCalculatorFormProps>) => {
+        {(props: any) => {
           const {
             values: { growthRate, years, startingSalary },
             setSubmitting,

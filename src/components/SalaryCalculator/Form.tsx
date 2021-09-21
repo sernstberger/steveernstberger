@@ -1,13 +1,6 @@
 import { Grid, Button } from "@mui/material";
-import {
-  Formik,
-  Form as FormikForm,
-  FormikProps,
-  useFormikContext,
-} from "formik";
-import * as Yup from "yup";
+import { Form as FormikForm, useFormikContext } from "formik";
 import Input from "../../componentLibrary/Form/Input";
-import { IncomeCalculatorFormProps } from "../../types";
 
 const Form = () => {
   const { isSubmitting } = useFormikContext<any>();

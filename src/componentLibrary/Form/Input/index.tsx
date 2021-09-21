@@ -10,7 +10,8 @@ interface InputProps {
 const Input = (props: InputProps) => {
   const { values, errors, touched, handleChange, handleBlur } =
     useFormikContext<any>();
-  const { name, label, helperText } = props;
+  const { name, label, helperText = "" } = props;
+  const hasError = !!errors[name] && !!touched[name];
   return (
     <TextField
       {...{ name, label }}
@@ -18,8 +19,8 @@ const Input = (props: InputProps) => {
       value={values[name]}
       variant="outlined"
       type="number"
-      helperText={errors[name] && touched[name] ? errors[name] : helperText}
-      error={errors[name] && touched[name] ? true : false}
+      helperText={hasError ? errors[name] : helperText}
+      error={hasError}
       onChange={handleChange}
       onBlur={handleBlur}
       fullWidth

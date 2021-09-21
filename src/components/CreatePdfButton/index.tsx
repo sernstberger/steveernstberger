@@ -1,10 +1,11 @@
 import { usePDF } from "@react-pdf/renderer";
-import Resume from "../Resume";
 import Button from "@mui/material/Button";
 import { CircularProgress } from "@mui/material";
+import Resume from "../Resume";
 
 const CreatePdfButton = () => {
-  const [instance, updateInstance] = usePDF({ document: <Resume /> });
+  // const [instance, updateInstance] = usePDF({ document: <Resume /> });
+  const [instance] = usePDF({ document: <Resume /> });
 
   // if (instance.error) return <div>Something went wrong: {error}</div>;
   if (instance.error) return <div>Something went wrong</div>;

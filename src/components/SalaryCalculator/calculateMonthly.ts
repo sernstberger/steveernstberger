@@ -1,5 +1,5 @@
 import { addYears, format } from "date-fns";
-import { DataStructure, IncomeCalculatorFormProps } from "../../types";
+import { DataStructure } from "../../types";
 import formatNumber from "../../utils/formatNumber";
 
 const calculateMonthly = (

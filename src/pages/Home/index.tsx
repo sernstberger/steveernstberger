@@ -1,6 +1,6 @@
 import { Container, Typography } from "@mui/material";
 import Job from "../../components/Job";
-import { PDFViewer } from "@react-pdf/renderer";
+// import { PDFViewer } from "@react-pdf/renderer";
 import resumeData from "../../components/Resume/data";
 import { JobProps } from "../../types";
 // import WorkHighlight from "./components/WorkHighlight";
@@ -56,7 +56,27 @@ export default function App() {
         </Typography>
         <div>
           {jobs.map((job: JobProps) => {
-            return <Job key={job.company} {...job} />;
+            const {
+              company,
+              description,
+              title,
+              startDate,
+              endDate,
+              technologies,
+            } = job;
+            return (
+              <Job
+                key={job.company}
+                {...{
+                  company,
+                  description,
+                  title,
+                  startDate,
+                  endDate,
+                  technologies,
+                }}
+              />
+            );
           })}
         </div>
 

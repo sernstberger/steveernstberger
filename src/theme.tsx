@@ -1,7 +1,6 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
-// A custom theme for this app
-let theme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#556cd6",
