@@ -6,22 +6,16 @@ import {
   TableCell,
   TableHead,
   Typography,
-  TextField,
 } from "@mui/material";
 import SalaryChart from "./SalaryChart";
-import {
-  DataStructure,
-  FormattedNumber,
-  IncomeCalculatorFormProps,
-} from "../../types";
-import formatNumber from "../../utils/formatNumber";
+import { DataStructure, IncomeCalculatorFormProps } from "../../types";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import Form from "./Form";
 import calculateMonthly from "./calculateMonthly";
 
 const SalaryCalculator = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<DataStructure[]>([]);
   return (
     <div>
       <Typography variant="h1">Income calculator</Typography>
@@ -32,32 +26,30 @@ const SalaryCalculator = () => {
           growthRate: 3,
           years: 20,
         }}
-        onSubmit={(values: any) => {
-          console.log("!!!vals", values);
+        onSubmit={(values: IncomeCalculatorFormProps) => {
           const { startingSalary, growthRate, years } = values;
-          const res: any = calculateMonthly(startingSalary, growthRate, years);
+          const res: DataStructure[] = calculateMonthly(
+            startingSalary,
+            growthRate,
+            years
+          );
           setData(res);
         }}
         validationSchema={Yup.object().shape({
           startingSalary: Yup.number().required(),
-          growthRate: Yup.number().required("Goooooooooooo"),
+          growthRate: Yup.number().required(),
           years: Yup.number().required(),
         })}
       >
         {(props: FormikProps<IncomeCalculatorFormProps>) => {
           const {
             values: { growthRate, years, startingSalary },
-            touched,
-            errors,
-            handleBlur,
-            handleChange,
-            isSubmitting,
             setSubmitting,
             submitCount,
           } = props;
 
           useEffect(() => {
-            const res: any = calculateMonthly(
+            const res: DataStructure[] = calculateMonthly(
               startingSalary,
               growthRate,
               years
@@ -88,14 +80,16 @@ const SalaryCalculator = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {data.map((bar: any) => (
-                      <TableRow key={bar.date}>
-                        <TableCell>{bar.date}</TableCell>
-                        <TableCell>{bar.net.formatted}</TableCell>
-                        <TableCell>{bar.taxes.formatted}</TableCell>
-                        <TableCell>{bar.gross.formatted}</TableCell>
-                        <TableCell>{bar.monthlyGross.formatted}</TableCell>
-                        <TableCell>{bar.monthlyNet.formatted}</TableCell>
+                    {data.map((singleData: DataStructure) => (
+                      <TableRow key={singleData.date}>
+                        <TableCell>{singleData.date}</TableCell>
+                        <TableCell>{singleData.net.formatted}</TableCell>
+                        <TableCell>{singleData.taxes.formatted}</TableCell>
+                        <TableCell>{singleData.gross.formatted}</TableCell>
+                        <TableCell>
+                          {singleData.monthlyGross.formatted}
+                        </TableCell>
+                        <TableCell>{singleData.monthlyNet.formatted}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

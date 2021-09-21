@@ -5,7 +5,11 @@ import { Email, GitHub } from "@mui/icons-material";
 import IconLinkButton from "../IconLinkButton";
 import CreatePdfButton from "../CreatePdfButton";
 
-const sections: any[] = [
+interface HeaderItemsProps {
+  title: string;
+  url: string;
+}
+const sections: HeaderItemsProps[] = [
   { title: "Home", url: "/" },
   { title: "Income calculator", url: "/income-calculator" },
 ];
@@ -21,23 +25,25 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <Typography
             fontWeight="bold"
             component="h2"
             variant="h5"
-            color="inherit"
+            color="textPrimary"
             noWrap
             sx={{ flex: 1 }}
           >
             Steve Ernstberger
           </Typography>
-          <Typography variant="body2">Front-End Developer</Typography>
-        </div>
+          <Typography variant="body2" color="textSecondary">
+            Front-End Developer
+          </Typography>
+        </Link>
 
         <nav>
           <ul>
-            {sections.map((section: any) => (
+            {sections.map((section: HeaderItemsProps) => (
               <MuiLink
                 component={Link}
                 color="inherit"

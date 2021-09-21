@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Job from "../../components/Job";
 import { PDFViewer } from "@react-pdf/renderer";
 import resumeData from "../../components/Resume/data";
+import { JobProps } from "../../types";
 // import WorkHighlight from "./components/WorkHighlight";
 
 export default function App() {
@@ -55,8 +56,8 @@ export default function App() {
         Experience
       </Typography>
       <div>
-        {jobs.map((job: any) => {
-          return <Job key={job.company} {...{ job }} />;
+        {jobs.map((job: JobProps) => {
+          return <Job key={job.company} {...job} />;
         })}
       </div>
 

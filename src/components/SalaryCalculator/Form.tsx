@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Grid, Button } from "@mui/material";
 import {
   Formik,
@@ -11,10 +10,6 @@ import Input from "../Form/Input";
 import { IncomeCalculatorFormProps } from "../../types";
 
 const Form = () => {
-  const foo = () => {
-    // calculate
-  };
-
   const { isSubmitting } = useFormikContext<any>();
 
   return (

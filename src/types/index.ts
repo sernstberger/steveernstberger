@@ -17,3 +17,12 @@ export interface IncomeCalculatorFormProps {
   growthRate: number;
   years: number;
 }
+
+export interface JobProps {
+  company: string;
+  description: string[];
+  title: string;
+  startDate: string;
+  endDate?: string;
+  technologies?: string[];
+}

@@ -1,6 +1,10 @@
 import { Divider, Typography, Container, Link as MuiLink } from "@mui/material";
 
-const WorkHighlight = (props: any) => {
+interface WorkHighlightProps {
+  company: string;
+  description: string;
+}
+const WorkHighlight = (props: WorkHighlightProps) => {
   const { company, description } = props;
   return (
     <div>
