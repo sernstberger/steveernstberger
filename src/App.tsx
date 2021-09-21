@@ -1,33 +1,26 @@
-import { Container } from "@mui/material";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SalaryCalculator from "./components/SalaryCalculator";
 import Header from "./components/Header";
 import Home from "./pages/Home";
-
-interface HeaderProps {
-  sections: ReadonlyArray<{
-    title: string;
-    url: string;
-  }>;
-  title: string;
-}
+import PPN from "./projects/Vemo/PPN";
 
 export default function App() {
   return (
     <Router>
       <Header />
-      <Container maxWidth="lg">
-        <div>
-          <Switch>
-            <Route path="/income-calculator">
-              <SalaryCalculator />
-            </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Container>
+      <div>
+        <Switch>
+          <Route path="/income-calculator">
+            <SalaryCalculator />
+          </Route>
+          <Route path="/Vemo">
+            <PPN />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 }

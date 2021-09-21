@@ -6,7 +6,7 @@ import {
   useFormikContext,
 } from "formik";
 import * as Yup from "yup";
-import Input from "../Form/Input";
+import Input from "../../componentLibrary/Form/Input";
 import { IncomeCalculatorFormProps } from "../../types";
 
 const Form = () => {

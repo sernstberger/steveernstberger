@@ -6,6 +6,7 @@ import {
   TableCell,
   TableHead,
   Typography,
+  Container,
 } from "@mui/material";
 import SalaryChart from "./SalaryChart";
 import { DataStructure, IncomeCalculatorFormProps } from "../../types";
@@ -17,7 +18,7 @@ import calculateMonthly from "./calculateMonthly";
 const SalaryCalculator = () => {
   const [data, setData] = useState<DataStructure[]>([]);
   return (
-    <div>
+    <Container maxWidth="lg">
       <Typography variant="h1">Income calculator</Typography>
 
       <Formik
@@ -101,7 +102,7 @@ const SalaryCalculator = () => {
           );
         }}
       </Formik>
-    </div>
+    </Container>
   );
 };
 

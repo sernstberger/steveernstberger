@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Job from "../../components/Job";
 import { PDFViewer } from "@react-pdf/renderer";
 import resumeData from "../../components/Resume/data";
@@ -9,7 +9,7 @@ export default function App() {
   const { jobs } = resumeData;
   return (
     <div style={{ padding: "40px 0" }}>
-      <div>
+      <Container maxWidth="lg">
         <Typography variant="h3">Expertise</Typography>
         <Typography>
           I am a Front-End Developer with 14 years of professional experience. I
@@ -51,19 +51,19 @@ export default function App() {
                       />
                     </Grid>
                   </Grid> */}
-      </div>
-      <Typography variant="h3" mt={6}>
-        Experience
-      </Typography>
-      <div>
-        {jobs.map((job: JobProps) => {
-          return <Job key={job.company} {...job} />;
-        })}
-      </div>
+        <Typography variant="h3" mt={6}>
+          Experience
+        </Typography>
+        <div>
+          {jobs.map((job: JobProps) => {
+            return <Job key={job.company} {...job} />;
+          })}
+        </div>
 
-      {/* <PDFViewer height="800" width="1000">
+        {/* <PDFViewer height="800" width="1000">
                   <Resume />
                 </PDFViewer> */}
+      </Container>
     </div>
   );
 }

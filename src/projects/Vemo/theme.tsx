@@ -4,7 +4,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 let theme = createTheme({
   palette: {
     primary: {
-      main: "#556cd6",
+      main: "#19ca22",
     },
     secondary: {
       main: "#19857b",
@@ -40,5 +40,5 @@ let theme = createTheme({
   },
 });
 
-const vemoTheme = responsiveFontSizes(theme);
-export default vemoTheme;
+theme = responsiveFontSizes(theme);
+export default theme;
