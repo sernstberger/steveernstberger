@@ -1,5 +1,4 @@
-import { Box, Container, Toolbar } from "@mui/material";
-import { useState } from "react";
+import { Box, Container } from "@mui/material";
 import Sidebar from "../Sidebar";
 
 interface AuthenticatedPageProps {
@@ -8,10 +7,6 @@ interface AuthenticatedPageProps {
 
 const AuthenticatedPage = (props: AuthenticatedPageProps) => {
   const { children } = props;
-  const [open, setOpen] = useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -20,16 +15,12 @@ const AuthenticatedPage = (props: AuthenticatedPageProps) => {
       <Box
         component="main"
         sx={{
-          backgroundColor: (theme) =>
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
+          backgroundColor: (theme) => theme.palette.grey[100],
           flexGrow: 1,
-          height: "100vh",
+          // height: "100vh",
           overflow: "auto",
         }}
       >
-        <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <div>{children}</div>
         </Container>
