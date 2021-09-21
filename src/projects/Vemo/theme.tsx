@@ -1,7 +1,7 @@
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 // A custom theme for this app
-let theme = createTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#0073D1",
@@ -17,16 +17,28 @@ let theme = createTheme({
     },
   },
   typography: {
+    fontFamily: [
+      "Montserrat",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+
     h1: {
       fontSize: "3rem",
-      fontFamily: "'Bungee', cursive",
     },
     h2: {
       fontSize: "2.5rem",
     },
     h3: {
       fontSize: "2rem",
-      fontFamily: "'Bungee', cursive",
     },
     h4: {
       fontSize: "1.5rem",
@@ -40,5 +52,5 @@ let theme = createTheme({
   },
 });
 
-theme = responsiveFontSizes(theme);
-export default theme;
+const vemoTheme = responsiveFontSizes(theme);
+export default vemoTheme;

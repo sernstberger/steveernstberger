@@ -5,21 +5,32 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, styled } from "@mui/material/styles";
+import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import Input from "../../../componentLibrary/Form/Input";
-import vemoTheme from "../../../theme";
+import vemoTheme from "../theme";
+
+const Background = styled("div")(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  minHeight: "100vh",
+}));
 
 const PPN = () => {
   return (
     <ThemeProvider theme={vemoTheme}>
-      <div style={{ backgroundColor: "red", minHeight: "100vh" }}>
+      <Background>
         <Container maxWidth="sm">
+          school
           <Card>
             <CardContent>
               <Typography variant="h1">Sign in</Typography>
               <Formik
                 initialValues={{ email: "", password: "" }}
+                validationSchema={Yup.object().shape({
+                  email: Yup.number().required(),
+                  password: Yup.number().required(),
+                })}
                 onSubmit={() => {}}
               >
                 <Form>
@@ -31,7 +42,7 @@ const PPN = () => {
             </CardContent>
           </Card>
         </Container>
-      </div>
+      </Background>
     </ThemeProvider>
   );
 };
