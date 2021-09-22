@@ -1,16 +1,18 @@
 import { Box, Container } from "@mui/material";
 import Sidebar from "../Sidebar";
+import { SidebarItemProps } from "../Sidebar/SidebarItem";
 
 interface AuthenticatedPageProps {
   children: React.ReactNode;
+  sidebarItems: SidebarItemProps[];
 }
 
 const AuthenticatedPage = (props: AuthenticatedPageProps) => {
-  const { children } = props;
+  const { children, sidebarItems } = props;
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar />
+      <Sidebar {...{ sidebarItems }} />
 
       <Box
         component="main"
