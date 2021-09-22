@@ -64,7 +64,7 @@ const Dashboard = () => {
           >
             Welcome, Steve!
           </Typography>
-          <div>
+          <div style={{ display: "flex" }}>
             Steve Ernstberger
             <Avatar />
           </div>
@@ -72,7 +72,7 @@ const Dashboard = () => {
       </AppBar>
 
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <Alert>Plaid</Alert>
+        {/* <Alert>Plaid</Alert> */}
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <DashboardCard title="My payments">
