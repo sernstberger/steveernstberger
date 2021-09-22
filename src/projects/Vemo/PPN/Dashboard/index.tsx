@@ -1,9 +1,11 @@
 import { useHistory } from "react-router-dom";
 import { Avatar, Alert, Grid, Typography } from "@mui/material";
 import { styled, createTheme } from "@mui/material/styles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
+import {
+  AccountBalance,
+  AttachMoney,
+  Dashboard as DashboardIcon,
+} from "@mui/icons-material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -11,6 +13,8 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import AuthenticatedPage from "../../../../componentLibrary/AuthenticatedPage";
 import DashboardCard from "../components/DashboardCard";
+import Stat from "../../../../componentLibrary/Stat";
+import StatWithProgress from "../../../../componentLibrary/StatWithProgress";
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -36,12 +40,12 @@ const Dashboard = () => {
         {
           title: "My Income",
           url: `/vemo/income`,
-          icon: <ShoppingCartIcon />,
+          icon: <AccountBalance />,
         },
         {
           title: "My Payments",
           url: `/vemo/payments`,
-          icon: <PeopleIcon />,
+          icon: <AttachMoney />,
         },
       ]}
     >
@@ -71,13 +75,26 @@ const Dashboard = () => {
         <Alert>Plaid</Alert>
         <Grid container spacing={3}>
           <Grid item xs={6}>
-            <DashboardCard title="My payments" />
+            <DashboardCard title="My payments">
+              <Stat value={123123} label="fooooo" currency />
+            </DashboardCard>
           </Grid>
           <Grid item xs={6}>
-            <DashboardCard title="My income and employment" />
+            <DashboardCard title="My income and employment">
+              <StatWithProgress
+                current={{ value: 1231231, label: "ahhh" }}
+                goal={{ value: 1431231, label: "whaaaa" }}
+              />
+            </DashboardCard>
           </Grid>
           <Grid item xs={12}>
-            <DashboardCard title="My agreements" />
+            <DashboardCard title="My agreements">
+              <StatWithProgress
+                current={{ value: 4444, label: "ahhh" }}
+                goal={{ value: 11111, label: "whaaaa" }}
+                currency
+              />
+            </DashboardCard>
           </Grid>
         </Grid>
       </Container>

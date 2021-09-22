@@ -1,7 +1,15 @@
 import { useHistory } from "react-router-dom";
-import { Drawer as MuiDrawer, List } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Drawer as MuiDrawer,
+  Link,
+  List,
+  Typography,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
+import Logo from "../Logo/vemo-logo.svg";
 
 interface SidebarProps {
   sidebarItems: SidebarItemProps[];
@@ -36,7 +44,13 @@ const Drawer = styled(MuiDrawer, {
 const Sidebar = (props: SidebarProps) => {
   const { sidebarItems } = props;
   return (
-    <Drawer variant="permanent" open>
+    <Drawer
+      variant="permanent"
+      open
+      PaperProps={{
+        sx: { justifyContent: "space-between" },
+      }}
+    >
       <div>logo</div>
       <List>
         {sidebarItems.map((sidebarItem: SidebarItemProps) => {
@@ -44,6 +58,41 @@ const Sidebar = (props: SidebarProps) => {
           return <SidebarItem key={title} {...{ title, icon, url }} />;
         })}
       </List>
+      <div>
+        <Divider />
+        <Box
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          padding={3}
+        >
+          {/* <Box display="flex" width="100%" justifyContent="space-around">
+            <Link
+              href="#terms"
+              sx={{
+                color: "text.secondary",
+                fontSize: 12,
+              }}
+            >
+              Terms
+            </Link>
+            <Divider orientation="vertical" />
+            <Link
+              href="#privacy"
+              sx={{
+                color: "text.secondary",
+                fontSize: 12,
+              }}
+            >
+              Privacy policy
+            </Link>
+          </Box> */}
+          <Box my={2}>
+            <img src={Logo} alt="Logo" width="100px" />
+          </Box>
+          <Typography variant="caption">© 2021 Steve Ernstberger</Typography>
+        </Box>
+      </div>
     </Drawer>
   );
 };
