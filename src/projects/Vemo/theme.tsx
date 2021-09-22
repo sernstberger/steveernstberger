@@ -49,6 +49,9 @@ let theme = createTheme({
     h6: {
       fontSize: "1.1rem",
     },
+    button: {
+      fontWeight: 700,
+    },
   },
 });
 
@@ -62,6 +65,10 @@ theme = createTheme(theme, {
       styleOverrides: {
         root: {
           borderRadius: 50,
+        },
+        contained: {
+          height: 40,
+          padding: theme.spacing(1, 3),
         },
       },
     },

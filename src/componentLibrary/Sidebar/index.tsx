@@ -41,7 +41,7 @@ const Sidebar = (props: SidebarProps) => {
       <List>
         {sidebarItems.map((sidebarItem: SidebarItemProps) => {
           const { title, icon, url } = sidebarItem;
-          return <SidebarItem {...{ title, icon, url }} />;
+          return <SidebarItem key={title} {...{ title, icon, url }} />;
         })}
       </List>
     </Drawer>
