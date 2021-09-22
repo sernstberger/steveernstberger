@@ -24,22 +24,23 @@ const AppBar = styled(MuiAppBar, {
 
 const Dashboard = () => {
   const history = useHistory();
+
   return (
     <AuthenticatedPage
       sidebarItems={[
         {
           title: "My Dashboard",
-          url: "/",
+          url: `/vemo/dashboard`,
           icon: <DashboardIcon />,
         },
         {
           title: "My Income",
-          url: "/",
+          url: `/vemo/income`,
           icon: <ShoppingCartIcon />,
         },
         {
           title: "My Payments",
-          url: "/",
+          url: `/vemo/payments`,
           icon: <PeopleIcon />,
         },
       ]}

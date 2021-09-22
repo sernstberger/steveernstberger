@@ -27,5 +27,8 @@ module.exports = {
     "react/require-default-props": "off",
     "no-unused-vars": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "no-return-assign": "warn",
+    "prefer-arrow-callback": "warn",
   },
 };
