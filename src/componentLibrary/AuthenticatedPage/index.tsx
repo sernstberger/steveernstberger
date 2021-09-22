@@ -1,4 +1,4 @@
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import Sidebar from "../Sidebar";
 import { SidebarItemProps } from "../Sidebar/SidebarItem";
 
@@ -23,9 +23,7 @@ const AuthenticatedPage = (props: AuthenticatedPageProps) => {
           overflow: "auto",
         }}
       >
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <div>{children}</div>
-        </Container>
+        <div>{children}</div>
       </Box>
     </Box>
   );

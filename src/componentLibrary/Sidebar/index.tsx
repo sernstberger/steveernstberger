@@ -1,15 +1,6 @@
 import { useHistory } from "react-router-dom";
-import {
-  Button,
-  Card,
-  CardContent,
-  Container,
-  Typography,
-} from "@mui/material";
-import MuiDrawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
+import { Drawer as MuiDrawer, List } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useState } from "react";
 import SidebarItem, { SidebarItemProps } from "./SidebarItem";
 
 interface SidebarProps {
