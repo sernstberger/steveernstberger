@@ -1,15 +1,15 @@
-import { useHistory } from "react-router-dom";
-import { Avatar, Card, CardContent, Grid, Typography } from "@mui/material";
-import { styled, createTheme } from "@mui/material/styles";
+import { Card, CardContent, CardActionArea, Typography } from "@mui/material";
 
 const DashboardCard = (props: any) => {
   const { title, children } = props;
-  const history = useHistory();
+
   return (
     <>
       <Typography>{title}</Typography>
       <Card>
-        <CardContent>{children}</CardContent>
+        <CardActionArea>
+          <CardContent>{children}</CardContent>
+        </CardActionArea>
       </Card>
     </>
   );

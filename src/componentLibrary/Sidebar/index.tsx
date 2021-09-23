@@ -1,9 +1,7 @@
-import { useHistory } from "react-router-dom";
 import {
   Box,
   Divider,
   Drawer as MuiDrawer,
-  Link,
   List,
   Typography,
 } from "@mui/material";

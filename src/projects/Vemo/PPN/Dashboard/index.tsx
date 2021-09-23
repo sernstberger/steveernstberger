@@ -1,16 +1,13 @@
-import { useHistory } from "react-router-dom";
 import { Avatar, Button, Divider, Grid, Typography } from "@mui/material";
-import { styled, createTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import {
   AccountBalance,
   AttachMoney,
   Dashboard as DashboardIcon,
 } from "@mui/icons-material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
 import AuthenticatedPage from "../../../../componentLibrary/AuthenticatedPage";
 import DashboardCard from "../components/DashboardCard";
 import Stat from "../../../../componentLibrary/Stat";
@@ -27,8 +24,6 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Dashboard = () => {
-  const history = useHistory();
-
   return (
     <AuthenticatedPage
       sidebarItems={[
@@ -78,7 +73,7 @@ const Dashboard = () => {
             <DashboardCard title="My payments">
               <div style={{ display: "flex" }}>
                 <Stat value={123123} label="fooooo" currency />
-                <Button>Pay now</Button>
+                <Button component="div">Pay now</Button>
               </div>
             </DashboardCard>
           </Grid>

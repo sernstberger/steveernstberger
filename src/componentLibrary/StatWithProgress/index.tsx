@@ -1,4 +1,4 @@
-import { LinearProgress, Typography } from "@mui/material";
+import { LinearProgress } from "@mui/material";
 import formatNumber from "../../utils/formatNumber";
 import Stat from "../Stat";
 

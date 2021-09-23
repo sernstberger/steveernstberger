@@ -1,6 +1,5 @@
 import React from "react";
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { NavLink, NavLinkProps } from "react-router-dom";
 
 export interface SidebarItemProps {
@@ -8,11 +7,6 @@ export interface SidebarItemProps {
   icon: React.ReactNode;
   url: string;
 }
-
-const Foo = styled("div")(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main,
-  minHeight: "calc(100vh - 64px)",
-}));
 
 const SidebarItem = (props: SidebarItemProps) => {
   const { icon, title, url } = props;
