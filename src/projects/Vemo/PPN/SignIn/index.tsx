@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import PasswordInput from "../../../../componentLibrary/Form/PasswordInput";
 import EmailInput from "../../../../componentLibrary/Form/EmailInput";
+import HavertonLogo from "../../../../componentLibrary/Logo/haverton-logo.svg";
 
 const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -22,7 +23,7 @@ const SignIn = () => {
   return (
     <Background>
       <Container maxWidth="sm">
-        school
+        <img src={HavertonLogo} alt="Haverton" />
         <Card>
           <CardContent>
             <Typography variant="h1">Sign in</Typography>
@@ -36,7 +37,7 @@ const SignIn = () => {
                 history.push("/");
               }}
             >
-              <Form>
+              <Form style={{ display: "flex", flexDirection: "column" }}>
                 <EmailInput label="Email" name="email" />
                 <PasswordInput label="Password" name="password" />
                 <Button onClick={() => history.push("vemo/dashboard")}>
