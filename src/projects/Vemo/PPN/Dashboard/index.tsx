@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { Avatar, Alert, Grid, Typography } from "@mui/material";
+import { Avatar, Button, Divider, Grid, Typography } from "@mui/material";
 import { styled, createTheme } from "@mui/material/styles";
 import {
   AccountBalance,
@@ -76,7 +76,10 @@ const Dashboard = () => {
         <Grid container spacing={3}>
           <Grid item xs={6}>
             <DashboardCard title="My payments">
-              <Stat value={123123} label="fooooo" currency />
+              <div style={{ display: "flex" }}>
+                <Stat value={123123} label="fooooo" currency />
+                <Button>Pay now</Button>
+              </div>
             </DashboardCard>
           </Grid>
           <Grid item xs={6}>
@@ -89,11 +92,28 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12}>
             <DashboardCard title="My agreements">
-              <StatWithProgress
-                current={{ value: 4444, label: "ahhh" }}
-                goal={{ value: 11111, label: "whaaaa" }}
-                currency
-              />
+              <Grid container spacing={1}>
+                <Grid item xs={5}>
+                  adfdasf
+                </Grid>
+                <Grid item xs={1}>
+                  <Divider orientation="vertical" />
+                </Grid>
+                <Grid item xs={3}>
+                  <StatWithProgress
+                    current={{ value: 4444, label: "ahhh" }}
+                    goal={{ value: 11111, label: "whaaaa" }}
+                    currency
+                  />
+                </Grid>
+                <Grid item xs={3}>
+                  <StatWithProgress
+                    current={{ value: 4444, label: "ahhh" }}
+                    goal={{ value: 11111, label: "whaaaa" }}
+                    currency
+                  />
+                </Grid>
+              </Grid>
             </DashboardCard>
           </Grid>
         </Grid>

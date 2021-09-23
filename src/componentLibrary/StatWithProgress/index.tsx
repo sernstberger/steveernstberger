@@ -17,14 +17,14 @@ export interface StatWithProgressProps {
 const StatWithProgress = (props: StatWithProgressProps) => {
   const { current, goal, currency } = props;
   const progressValue = (current.value / goal.value) * 100;
-  const foo = `${current.label} / ${
+  const label = `${current.label} / ${
     formatNumber(goal.value, currency).formatted
   } ${goal.label}`;
 
   return (
     <div>
       <LinearProgress variant="determinate" value={progressValue} />
-      <Stat value={current.value} label={foo} />
+      <Stat value={current.value} label={label} />
     </div>
   );
 };
