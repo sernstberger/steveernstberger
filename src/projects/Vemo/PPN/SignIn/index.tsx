@@ -9,7 +9,8 @@ import {
 import { styled } from "@mui/material/styles";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import Input from "../../../../componentLibrary/Form/Input";
+import PasswordInput from "../../../../componentLibrary/Form/PasswordInput";
+import EmailInput from "../../../../componentLibrary/Form/EmailInput";
 
 const Background = styled("div")(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -36,8 +37,8 @@ const SignIn = () => {
               }}
             >
               <Form>
-                <Input label="Email" name="email" />
-                <Input label="Password" name="password" />
+                <EmailInput label="Email" name="email" />
+                <PasswordInput label="Password" name="password" />
                 <Button onClick={() => history.push("vemo/dashboard")}>
                   Sign in
                 </Button>

@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { useFormikContext } from "formik";
+import React from "react";
 
 export interface InputProps {
   name: string;
@@ -18,22 +19,26 @@ export interface InputProps {
     | "text"
     | "url";
   disabled?: boolean;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
 }
 
 const Input = (props: InputProps) => {
   const { values, errors, touched, handleChange, handleBlur, isSubmitting } =
     useFormikContext<any>();
   const {
-    name,
-    label,
-    helperText = "",
-    type = "text",
     disabled = false,
+    endAdornment = undefined,
+    helperText = "",
+    label,
+    name,
+    startAdornment = undefined,
+    type = "text",
   } = props;
   const hasError = !!errors[name] && !!touched[name];
   return (
     <TextField
-      {...{ name, label, type }}
+      {...{ label, name, type }}
       id={name}
       value={values[name]}
       variant="outlined"
@@ -43,6 +48,10 @@ const Input = (props: InputProps) => {
       onBlur={handleBlur}
       fullWidth
       disabled={disabled || isSubmitting}
+      InputProps={{
+        endAdornment,
+        startAdornment,
+      }}
     />
   );
 };
